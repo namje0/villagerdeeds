@@ -1,5 +1,9 @@
 package com.namje.villagerdeed;
 
+import com.namje.villagerdeed.block.entity.custom.VillagerDeedBlockEntity;
+import com.namje.villagerdeed.menu.custom.VillagerDeedScreen;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -11,4 +15,8 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 @Mod(value = VillagerDeed.MODID, dist = Dist.CLIENT)
 // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
 @EventBusSubscriber(modid = VillagerDeed.MODID, value = Dist.CLIENT)
-public class VillagerDeedClient {}
+public class VillagerDeedClient {
+    public static void openDeedScreen(VillagerDeedBlockEntity blockEntity) {
+        Minecraft.getInstance().setScreenAndShow(new VillagerDeedScreen(Component.translatable("block.villagerdeed.namje_villagerdeed"), blockEntity));
+    }
+}
