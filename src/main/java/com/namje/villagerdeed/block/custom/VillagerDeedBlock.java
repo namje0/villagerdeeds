@@ -2,8 +2,7 @@ package com.namje.villagerdeed.block.custom;
 
 import com.namje.villagerdeed.block.entity.ModBlockEntities;
 import com.namje.villagerdeed.block.entity.custom.VillagerDeedBlockEntity;
-import com.namje.villagerdeed.menu.custom.VillagerDeedScreen;
-import net.minecraft.client.Minecraft;
+import com.namje.villagerdeed.VillagerDeedClient;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -112,12 +111,7 @@ public class VillagerDeedBlock extends BaseEntityBlock {
     ) {
         if (level.isClientSide()) {
             if (level.getBlockEntity(pos) instanceof VillagerDeedBlockEntity villagerDeedBlockEntity) {
-                Minecraft.getInstance().setScreen(
-                        new VillagerDeedScreen(
-                                Component.translatable("block.villagerdeed.namje_villagerdeed"),
-                                villagerDeedBlockEntity
-                        )
-                );
+                VillagerDeedClient.openDeedScreen(villagerDeedBlockEntity);
             }
             return InteractionResult.SUCCESS;
         }
